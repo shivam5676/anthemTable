@@ -1,12 +1,13 @@
-const sequelize = require("sequelize");
-const Database = require("../database/database");
+const { default: mongoose } = require("mongoose");
 
-// const database=require("")
-const membership = Database.define("tbl_membership", {
-  id: { type: sequelize.INTEGER, allowNull: false ,autoIncrement:true,primaryKey:true},
-  membership_name: { type: sequelize.STRING, allowNull: false },
-  validity: { type: sequelize.STRING, allowNull: false },
-  email: { type: sequelize.STRING, allowNull: false },
-  status: { type: sequelize.STRING, allowNull: false },
+const { STRING } = require("sequelize");
+
+const membershipSchema = new mongoose.Schema({
+  membership_name: { type: String, required: true },
+  validity: { type: String, required: true },
+ 
 });
-module.exports = membership;
+
+const Membership = mongoose.model("membership", membershipSchema);
+
+module.exports = Membership;
